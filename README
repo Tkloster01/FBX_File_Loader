@@ -1,0 +1,97 @@
+Tyler Kloster
+Fall 2023 Computer Graphics 4229
+
+To Run,
+unzip bmp and take out the file
+./final
+
+My final project is an FBX file loader. When you load up the project there are three different
+files to look at and you can toggle through with + and -. The first is a gear that uses four different
+texture maps, one for the base color in the frag shader and three in the vertex shader to control the
+diffuse and specular light as well as the glossiness. The second file is sting from the hobbit movies.
+The third file is a cool alien that I found when looking for files. The largest file is the gear with 
+119500 vertices
+
+Things I am proud of
+    - The FBX file format allows for an insane amount of options that make the file really hard to parse through.
+        A lot of my time in the beginning was spent trying to read the bytes out of the file into structures so
+        I can access all the data as objects. This required a lot of byte manipulation and recursion, so everything
+        had to be tuned exactly. This part of the project gave me a much firmer grasp on low level c programming and how 
+        it interacts with opengl
+    - There is also an option to encode the data stored in a node, and it is most commonly on, so I had to figure 
+        out how to process coded data.
+
+    - The gear file uses 4 texture files and uses bit maps to effect the diffuse and specular color in the vertex shader
+    - In the sword file, the blade, handle, pomel, and guard are all defined as different objects drawn at the origin.
+        The reason the sword has its own draw function is to add these translations
+    - The alien function, much like the sword, is multiple objects but they are defined at the correct locations in
+        relation to each other
+
+Although I deviated a lot from the original plan and the file loader took me much longer than I had anticipated,
+I had always wanted to get a better understanding of how to take a file made in blender and import it into openGL
+to eventually make a full game. Dissecting the fbx file format this intessely really gave me an understanding of 
+how each of the components of an object file are implemented in openGL code
+
+
+
+keybinds - 
+    -/+ - change mode
+        1 - gear
+        2 - sword
+        3 - alien
+    {/} - raise and lower light
+    [/] - increase or decrease light radius
+    0 - reset view
+    arrow keys - move the camera
+    esc - quit
+
+
+
+
+
+
+Time Log
+
+Date           |Time Start          |Time end      
+Oct 24         |8:30                |9:30
+    - Adding perspective view back into textures program
+
+Nov 7          |8:15                |11:00     
+               |12:00               |3:10
+    - Adding function to the fbx file loader that detects if it is an fbx file or not
+
+Nov 8          |12:30               |3:00
+    - Get the endoff value from each node and traverse the whole file
+               |5:30                |6:30
+    - Found all the names for the standard elements for an fbx file
+
+Nov 16         |4:50                |9:30 
+               |10:30               |12:10
+
+Nov 17 5:00 hours
+    keep dropping a byte somewhere what the freak
+
+Nov 22         |10:30               |1:00
+    reconfigure the recursion to take place right after break statements not working thou
+
+Nov 27         |10:00               |3:09
+    The to string now can read the whole file and stop at
+    the right time, i just need to add a way to access each
+    node after it loads and how to print the properties correctly
+               |3:13                |3:30
+    Jk it seg faults sometimes because the final break is wrong
+
+Nov 28         |9:30                |3:15
+    The progam works about 95% of the time, I think this is because of 
+    memory leaks throughout as the more I free up the better it preforms
+    I can now read the file into the 10 standard header nodes and read 
+    out the data. I need to implement a property parser that will read the
+    property data from raw binary data and turn it into the oppropriate data 
+    type. I am close enough to implement at least vertex data by the progress report
+               |5:30                |6:00
+
+Nov 29         |2:00                |4:45
+               |5:30                |7:30
+               |7:40                |7:45
+
+I stopped keeping track after the break but probably another 50 hours
